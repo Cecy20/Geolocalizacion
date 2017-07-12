@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Geolos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Address</th>
+      <th>Description</th>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @geolos.each do |geolo| %>
+      <tr>
+        <td><%= geolo.latitude %></td>
+        <td><%= geolo.longitude %></td>
+        <td><%= geolo.address %></td>
+        <td><%= geolo.description %></td>
+        <td><%= geolo.title %></td>
+        <td><%= link_to 'Show', geolo %></td>
+        <td><%= link_to 'Edit', edit_geolo_path(geolo) %></td>
+        <td><%= link_to 'Destroy', geolo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Geolo', new_geolo_path %>
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script type="text/javascript">
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers([
+    {
+      "lat": 0,
+      "lng": 0,
+      "picture": {
+        "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+        "width":  32,
+        "height": 32
+      },
+      "infowindow": "hello!"
+    }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>

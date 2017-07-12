@@ -1,0 +1,2 @@
+class Geolo < ApplicationRecord
+end

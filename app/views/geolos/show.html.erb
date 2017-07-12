@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @geolo.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @geolo.longitude %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @geolo.address %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @geolo.description %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @geolo.title %>
+</p>
+
+<%= link_to 'Edit', edit_geolo_path(@geolo) %> |
+<%= link_to 'Back', geolos_path %>
+
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@geolo.latitude},#{@geolo.longitude}&markers=#{@geolo.latitude},#{@geolo.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8", alt: "#{@geolo.title} on the map" %>
